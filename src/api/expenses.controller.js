@@ -1,5 +1,5 @@
 const {
-  gellAllExpenses,
+  getAllExpenses,
   getExpenses,
   createExpenses,
   removeExpenses,
@@ -10,12 +10,12 @@ const { getUser } = require('../services/user.service');
 const getAll = async (req, res) => {
   const request = {
     userId: req.query.userId ? +req.query.userId : null,
-    category: req.query.categories ? req.query.categories : null,
+    categories: req.query.categories ? req.query.categories : null,
     from: req.query.from ? req.query.from : null,
     to: req.query.to ? req.query.to : null,
   };
 
-  const expensess = await gellAllExpenses(request);
+  const expensess = await getAllExpenses(request);
 
   if (!expensess) {
     return res.status(400).end();

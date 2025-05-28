@@ -6,7 +6,7 @@ const clearExpenses = () => {
   expensess.length = 0;
 };
 
-const gellAllExpenses = ({ userId, category, from, to }) => {
+const getAllExpenses = ({ userId, categories, from, to }) => {
   const result = expensess.filter((expenses) => {
     const expenseDate = new Date(expenses.spentAt);
     const fromDate = from ? new Date(from) : null;
@@ -18,7 +18,8 @@ const gellAllExpenses = ({ userId, category, from, to }) => {
 
     const userMatch = !userId || expenses.userId === +userId;
     const categoryMatch =
-      !category || expenses.category.toLowerCase() === category.toLowerCase();
+      !categories ||
+      expenses.category.toLowerCase() === categories.toLowerCase();
 
     return userMatch && categoryMatch && withinDates;
   });
@@ -60,7 +61,7 @@ const removeExpenses = (id) => {
 };
 
 module.exports = {
-  gellAllExpenses,
+  getAllExpenses,
   getExpenses,
   createExpenses,
   removeExpenses,
